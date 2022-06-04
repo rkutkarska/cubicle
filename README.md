@@ -1,2 +1,2 @@
 # cubicle
-JS Backend
+Softui JS Backend project
