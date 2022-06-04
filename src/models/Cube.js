@@ -25,8 +25,8 @@ const cubeSchema = new mongoose.Schema({
 
 
 cubeSchema.path('imageUrl').validate(function () {
-    return this.name.startsWith('http' || 'https');
-}, 'Image URL should be a link!');
+    return this.imageUrl.startsWith('http');
+}, 'Image URL should be link!');
 
 const Cube = mongoose.model('Cube', cubeSchema);
 module.exports = Cube;
