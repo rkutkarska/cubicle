@@ -4,8 +4,14 @@ const path = require('path');
 const Cube = require('../models/Cube');
 const Accessory = require('../models/Accessory');
 
-exports.getAll = async (search, rawFrom, rawTo) => {
-    let cubes = await Cube.find().lean();
+exports.getAll = async (search = '', rawFrom, rawTo) => {
+    const from = Number(rawFrom) || 1;
+    const to = Number(rawTo) || 6;
+    
+    let cubes = await Cube.find({ name: new RegExp(search, 'i') })
+        .where('difficultyLevel').lte(to).gte(from)
+        .lean();
+
     return cubes;
 };
 
